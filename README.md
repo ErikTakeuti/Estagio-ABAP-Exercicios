@@ -50,11 +50,11 @@ SELECTION-SCREEN  END OF BLOCK b1.
 
 DATA: lv_sala TYPE p.
 
-IF lv_hrst >= 160. "160 por conta de 4 semanas, ficaria 4 * 40 horas = 160 , horas total das semanas.
-  lv_sala = ( ( ( 160 ) * lv_horas ) + ( ( ( lv_hrst - 160 ) * lv_horas ) * '0.5' ) ). "horas extras caso tenha passado ou atingido as 160 horas.
-                "salario comum                 "hora extra      "valor da hora com acréscimo de 50%.
+IF lv_hrst > 160.
+  lv_sala = ( ( ( 160 ) * lv_horas ) + ( ( ( lv_hrst - 160 ) * ( lv_horas * '1.5' ) ) ) ).
+
 ELSE.
-  lv_sala = lv_hrst  * lv_horas . "senão efetua um pagamento normal sem horas extras.
+  lv_sala = lv_hrst  * lv_horas .
 ENDIF.
 
 WRITE: 'O seu salário é de: ' , lv_sala.
